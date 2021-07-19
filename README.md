@@ -1,4 +1,4 @@
-# Baseball study
+# Baseball Analysis
 The project has the following objectives.
 This project aims to determine factors associated with game performance and in particular whether tight defense is associated with increased game won, and whether the conclusion that tight defenses increase game won is valid across multiple time periods.\
 a.	Period 1 – before 1920 \
