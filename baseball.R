@@ -85,17 +85,17 @@ ggplot(df_1960_2010, aes(x = Runs_Scored, y = Runs_Scored - Runs_Against)) +
   geom_point()
 
 
-#	Games Lost vs Runs Scored
+# Games Lost vs Runs Scored
 cor(df_1960_2010$Games_Lost, df_1960_2010$Runs_Scored)
 ggplot(df_1960_2010, aes(x = Runs_Lost, y = Games_Won)) + 
   geom_point()
 
-#	Games Lost vs Runs Against
+# Games Lost vs Runs Against
 cor(df_1960_2010$Games_Lost, df_1960_2010$Runs_Against)
 ggplot(df_1960_2010, aes(x = Runs_Lost, y = Runs_Against)) + 
   geom_point()
 
-#	Games Lost vs (Runs Scored minus Runs Against)
+# Games Lost vs (Runs Scored minus Runs Against)
 cor(df_1960_2010$Games_Lost, df_1960_2010$Runs_Scored - df_1960_2010$Runs_Against)
 ggplot(df_1960_2010, aes(x = Runs_Lost, y = Runs_Scored - Runs_Against)) + 
   geom_point()
