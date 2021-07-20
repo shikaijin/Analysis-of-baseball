@@ -99,3 +99,105 @@ ggplot(df_1960_2010, aes(x = Runs_Lost, y = Runs_Against)) +
 cor(df_1960_2010$Games_Lost, df_1960_2010$Runs_Scored - df_1960_2010$Runs_Against)
 ggplot(df_1960_2010, aes(x = Runs_Lost, y = Runs_Scored - Runs_Against)) + 
   geom_point()
+      
+     
+      
+ # Create a multiple linear regression model for each of the 4 time periods noted 
+# above and select the independent variables that are good predictors of games won
+
+# Period 1 – before 1920
+df_p1 <- drop_na(df_before_1920[, colSums(is.na(df_before_1920)) < nrow(df_before_1920)])[-c(1, 3)]
+
+## Forward stepwise regression
+null_modelp1 <- lm(Games_Won ~ 1, data = df_p1)
+full_modelp1 <- lm(Games_Won ~ . , data = df_p1)
+
+step(null_modelp1, direction = "forward", scope = formula(full_modelp1))
+
+fit1 <- lm(Games_Won ~ Runs_Against + Runs_Scored + Errors + 
+             Strike_Outs + Doubles + Strikeouts_Allowed + Walks_Allowed + 
+             Home_Run_Allowed, data = df_p1)
+
+summary(fit1)
+
+# Period 2 -  1920 to 1960
+df_p2 <- drop_na(df_1920_1960[, colSums(is.na(df_1920_1960)) < nrow(df_1920_1960)])[-c(1, 3)]
+
+## Forward stepwise regression
+null_modelp2 <- lm(Games_Won ~ 1, data = df_p2)
+full_modelp2 <- lm(Games_Won ~ . , data = df_p2)
+
+step(null_modelp2, direction = "forward", scope = formula(full_modelp2))
+
+fit2 <- lm(Games_Won ~ Runs_Scored + Runs_Against + Saves + 
+             Complete_Games + Infield_Put_Outs + At_Bats + Hits + Stolen_Bases + 
+             Double_Plays + Strikeouts_Allowed + Walks_Allowed, data = df_p2)
+
+summary(fit2)
+
+# Period 3 – 1960 to 1990
+df_p3 <- drop_na(df_1960_1990[, colSums(is.na(df_1960_1990)) < nrow(df_1960_1990)])[-c(1, 3)]
+
+## Forward stepwise regression
+null_modelp3 <- lm(Games_Won ~ 1, data = df_p3)
+full_modelp3 <- lm(Games_Won ~ . , data = df_p3)
+
+step(null_modelp3, direction = "forward", scope = formula(full_modelp3))
+
+fit3 <- lm(Games_Won ~ Runs_Scored + Earned_Run_Average + Saves + 
+             Complete_Games + Fielding_Percentage + Shutout + Errors + 
+             Infield_Put_Outs + At_Bats + Hits + Runs_Against + Caught_Stealing + 
+             Double_Plays + Strike_Outs + Walks + Stolen_Bases, data = df_p3)
+
+summary(fit3)
+
+# Period 4 – 1990 to 2010
+df_p4 <- drop_na(df_1990_2010[, colSums(is.na(df_1990_2010)) < nrow(df_1990_2010)])[-c(1, 3)]
+
+## Forward stepwise regression
+null_modelp4 <- lm(Games_Won ~ 1, data = df_p4)
+full_modelp4 <- lm(Games_Won ~ . , data = df_p4)
+
+step(null_modelp4, direction = "forward", scope = formula(full_modelp4))
+
+fit4 <- lm(Games_Won ~ Saves + Runs_Scored + Runs_Against + 
+             Triples + Shutout + Complete_Games + Strikeouts_Allowed + 
+             Walks_Allowed + At_Bats + Infield_Put_Outs + Hits + Home_Run_Allowed + 
+             Errors + Fielding_Percentage + Home_Runs, data = df_p4)
+
+summary(fit4)
+
+
+# Use the 4th regression model from 1990 to 2010 and forecast the number of games 
+# won for the New York Yankees and the Toronto Blue Jays using values for the 
+# independent variables for 2012 and 2015.
+
+# New York Yankees
+df_yk <- data %>%  
+  filter(Team_Name == 'New York Yankees', Year %in% c(2012, 2015))
+
+df_yk2 <- df_yk %>% 
+  select(Saves, Runs_Scored, Runs_Against, Triples, Shutout, Complete_Games, Strikeouts_Allowed, 
+           Walks_Allowed, At_Bats, Infield_Put_Outs, Hits, Home_Run_Allowed, 
+           Errors, Fielding_Percentage, Home_Runs)
+
+pred_yk <- predict(fit4, df_yk2)
+      
+cor(pred_yk, df_yk$Games_Won)
+
+rmse(df_yk$Games_Won, df_yk2)
+      
+# Game won 2012 Toronto Blue Jays 
+df_bj <- data %>%  
+  filter(Team_Name == 'Toronto Blue Jays', Year %in% c(2012, 2015))
+
+df_bj2 <- df_bj %>% 
+  select(Saves, Runs_Scored, Runs_Against, Triples, Shutout, Complete_Games, Strikeouts_Allowed, 
+           Walks_Allowed, At_Bats, Infield_Put_Outs, Hits, Home_Run_Allowed, 
+           Errors, Fielding_Percentage, Home_Runs)
+
+pred_bj <- predict(fit4, df_bj2)
+      
+cor(df_bj2, df_bj$Games_Won)
+
+rmse(df_bj$Games_Won, df_bj2)
