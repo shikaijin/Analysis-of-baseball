@@ -1,4 +1,4 @@
-#  Analysis of Baseball  <img src = https://turfnsport.com/wp-content/uploads/2019/09/mlblogo1.jpg, width = 80>
+#  Analysis of Baseball  <img src = https://turfnsport.com/wp-content/uploads/2019/09/mlblogo1.jpg, width = 50>
 
 This project aims to determine factors associated with game performance and in particular whether tight defense is associated with increased game won, and whether the conclusion that tight defenses increase game won is valid across multiple time periods.\
 a.	Period 1 – before 1920 \
