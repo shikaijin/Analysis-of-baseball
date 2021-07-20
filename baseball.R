@@ -1,7 +1,7 @@
 library(tidyverse)
 library(Hmisc)
 library(ggpubr)
-library(bestglm)
+library(Metrics)
 
 
 # Objectives
@@ -185,7 +185,8 @@ pred_yk <- predict(fit4, df_yk2)
       
 cor(pred_yk, df_yk$Games_Won)
 
-rmse(df_yk$Games_Won, df_yk2)
+rmse(as.double(df_yk$Games_Won), as.double(pred_yk))
+
       
 # Game won 2012 Toronto Blue Jays 
 df_bj <- data %>%  
@@ -200,4 +201,4 @@ pred_bj <- predict(fit4, df_bj2)
       
 cor(df_bj2, df_bj$Games_Won)
 
-rmse(df_bj$Games_Won, df_bj2)
+rmse(as.double(df_bj$Games_Won), as.double(pred_bj))
