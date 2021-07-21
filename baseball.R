@@ -191,10 +191,10 @@ summary(fit4)
 # R^2 is a measure of the variance of y that is explained by the model. 
 # The higher the R^2 is, the “better” is the model. However, adding additional 
 # variables will always increase R^2 while this may not improve the model in the 
-# sense that it may not improve your prediction for new data. The adjusted  
+# sense that it may not improve prediction for new data. The adjusted  
 # R^2 accounts for the number of variables in the model and is a better measure 
 # of the model’s quality.
-# F-statistic tells you whether your model is statistically significant or not. 
+# F-statistic tells us whether the model is statistically significant or not. 
 # The null hypothesis is that all coefficients are zero and the alternative 
 # hypothesis is that not all coefficients are zero.
       
