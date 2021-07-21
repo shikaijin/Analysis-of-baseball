@@ -102,11 +102,28 @@ ggplot(df_1960_2010, aes(x = Runs_Scored - Runs_Against, y = Games_Lost)) +
       
      
       
- # Create a multiple linear regression model for each of the 4 time periods noted 
+# Create a multiple linear regression model for each of the 4 time periods noted 
 # above and select the independent variables that are good predictors of games won
 
-# Period 1 – before 1920
-df_p1 <- drop_na(df_before_1920[, colSums(is.na(df_before_1920)) < nrow(df_before_1920)])[-c(1, 3)]
+drop.na <- function(data) {
+  dt <- data
+  empty_frame <- data.frame(matrix(0, nrow(dt), ncol(dt)))
+  colnames(empty_frame) <- names(dt)
+  for (i in 1:ncol(dt)){
+    if (colSums(is.na(dt[i])) < nrow(dt)) {
+      empty_frame[i] <- dt[i]
+    }
+  }
+  new_dt <- na.omit(empty_frame) %>%
+    select_if(colSums(.) != 0)
+  rownames(new_dt) <- NULL
+  new_dt
+}
+
+
+# Period 1 - before 1920
+df_p1 <- drop.na(df_before_1920[-c(1, 3)])
+
 
 ## Forward stepwise regression
 null_modelp1 <- lm(Games_Won ~ 1, data = df_p1)
@@ -121,7 +138,7 @@ fit1 <- lm(Games_Won ~ Runs_Against + Runs_Scored + Errors +
 summary(fit1)
 
 # Period 2 -  1920 to 1960
-df_p2 <- drop_na(df_1920_1960[, colSums(is.na(df_1920_1960)) < nrow(df_1920_1960)])[-c(1, 3)]
+df_p2 <- drop.na(df_1920_1960[-c(1, 3)])
 
 ## Forward stepwise regression
 null_modelp2 <- lm(Games_Won ~ 1, data = df_p2)
@@ -135,8 +152,8 @@ fit2 <- lm(Games_Won ~ Runs_Scored + Runs_Against + Saves +
 
 summary(fit2)
 
-# Period 3 – 1960 to 1990
-df_p3 <- drop_na(df_1960_1990[, colSums(is.na(df_1960_1990)) < nrow(df_1960_1990)])[-c(1, 3)]
+# Period 3 - 1960 to 1990
+df_p3 <- drop.na(df_1960_1990[-c(1, 3)])
 
 ## Forward stepwise regression
 null_modelp3 <- lm(Games_Won ~ 1, data = df_p3)
@@ -151,8 +168,8 @@ fit3 <- lm(Games_Won ~ Runs_Scored + Earned_Run_Average + Saves +
 
 summary(fit3)
 
-# Period 4 – 1990 to 2010
-df_p4 <- drop_na(df_1990_2010[, colSums(is.na(df_1990_2010)) < nrow(df_1990_2010)])[-c(1, 3)]
+# Period 4 - 1990 to 2010
+df_p4 <- drop.na(df_1990_2010[-c(1, 3)])
 
 ## Forward stepwise regression
 null_modelp4 <- lm(Games_Won ~ 1, data = df_p4)
