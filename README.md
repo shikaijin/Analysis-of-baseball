@@ -8,7 +8,7 @@ d.	Period 4 – 1990 to 2010
 
 
 Approach
-1.	Perform an exploratory data analysis to understand the statistical properties and distribution shapes of 8 key variables of your choice. Perform this analysis for a single dataset that spans 1960 to 2010. 
+1.	Perform an exploratory data analysis to understand the statistical properties and distribution shapes of 8 key variables of choice. Perform this analysis for a single dataset that spans 1960 to 2010. 
 2.	Do a correlation analysis for the following pairs of fields for the complete data spanning 1960 to 2010. 
 3.	Create a multiple linear regression model for each of the 4 time periods noted above and select the independent variables that are good predictors of games won. 
 4.	Evaluate each of 4 regression models.
