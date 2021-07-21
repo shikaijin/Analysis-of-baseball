@@ -54,16 +54,15 @@ ggplot(stack(key_variables), aes(x = ind, y = values)) +
 
 
 # validity of the assumption that each of the 8 variables is normally distributed
+
+# if the p-value > 0.05 implying that the distribution of the data are not 
+# significantly different from normal distribution
 test <- matrix(0, nrow = ncol(key_variables), ncol = 2)
 for (i in 1:ncol(key_variables)) {
   test[i, 1] <- names(key_variables)[i]
   test[i, 2] <- shapiro.test(key_variables[,i])[[2]]
 }
 tibble('variables' = test[,1], 'p_value' = test[,2])
-
-# if the p-value > 0.05 implying that the distribution of the data are not 
-# significantly different from normal distribution
-
 
 
 # Correlation analysis for the following pairs of fields for the complete data 
