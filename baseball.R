@@ -49,8 +49,10 @@ hist.data.frame(key_variables)
 
 
 # boxplot for each of the 8 variables
-ggplot(stack(key_variables), aes(x = ind, y = values)) + 
-  geom_boxplot()
+for (i in 1:ncol(key_variables)){
+  print(ggplot(stack(key_variables[i]), aes(x = ind, y = values)) + 
+          geom_boxplot())
+}
 
 
 # validity of the assumption that each of the 8 variables is normally distributed
@@ -99,7 +101,7 @@ cor(df_1960_2010$Games_Lost, df_1960_2010$Runs_Scored - df_1960_2010$Runs_Agains
 ggplot(df_1960_2010, aes(x = Runs_Scored - Runs_Against, y = Games_Lost)) + 
   geom_point()
       
-     
+   
       
 # Create a multiple linear regression model for each of the 4 time periods noted 
 # above and select the independent variables that are good predictors of games won
@@ -118,7 +120,6 @@ drop.na <- function(data) {
   rownames(new_dt) <- NULL
   new_dt
 }
-
 
 
 # Period 1 - before 1920
