@@ -120,11 +120,12 @@ drop.na <- function(data) {
 }
 
 
+
 # Period 1 - before 1920
 df_p1 <- drop.na(df_before_1920[-c(1, 3)])
 
 
-## Forward stepwise regression
+## Forward stepwise regression: starts with the intercept and adds new ones until the model cannot be improved
 null_modelp1 <- lm(Games_Won ~ 1, data = df_p1)
 full_modelp1 <- lm(Games_Won ~ . , data = df_p1)
 
@@ -183,6 +184,21 @@ fit4 <- lm(Games_Won ~ Saves + Runs_Scored + Runs_Against +
 
 summary(fit4)
 
+# From the summary, we can find
+# The p-value indicates if the regression coefficient is significantly different 
+# from 0. If the p-value is smaller than 0.05, then we reject the null hypothesis 
+# that the regression coefficient is equal to 0 at 0.05 significance level.
+# R^2 is a measure of the variance of y that is explained by the model. 
+# The higher the R^2 is, the “better” is the model. However, adding additional 
+# variables will always increase R^2 while this may not improve the model in the 
+# sense that it may not improve your prediction for new data. The adjusted  
+# R^2 accounts for the number of variables in the model and is a better measure 
+# of the model’s quality.
+# F-statistic tells you whether your model is statistically significant or not. 
+# The null hypothesis is that all coefficients are zero and the alternative 
+# hypothesis is that not all coefficients are zero.
+      
+      
 
 # Use the 4th regression model from 1990 to 2010 and forecast the number of games 
 # won for the New York Yankees and the Toronto Blue Jays using values for the 
@@ -201,6 +217,7 @@ pred_yk <- predict(fit4, df_yk2)
       
 cor(pred_yk, df_yk$Games_Won)
 
+# Low values of RMSE indicate good fit
 rmse(as.double(df_yk$Games_Won), as.double(pred_yk))
 
       
@@ -217,4 +234,5 @@ pred_bj <- predict(fit4, df_bj2)
       
 cor(pred_bj, df_bj$Games_Won)
 
+# Low values of RMSE indicate good fit
 rmse(as.double(df_bj$Games_Won), as.double(pred_bj))
