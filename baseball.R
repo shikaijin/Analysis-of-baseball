@@ -204,7 +204,7 @@ cor(pred_yk, df_yk$Games_Won)
 rmse(as.double(df_yk$Games_Won), as.double(pred_yk))
 
       
-# Game won 2012 Toronto Blue Jays 
+# Toronto Blue Jays 
 df_bj <- data %>%  
   filter(Team_Name == 'Toronto Blue Jays', Year %in% c(2012, 2015))
 
