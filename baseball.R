@@ -199,6 +199,6 @@ df_bj2 <- df_bj %>%
 
 pred_bj <- predict(fit4, df_bj2)
       
-cor(df_bj2, df_bj$Games_Won)
+cor(pred_bj, df_bj$Games_Won)
 
 rmse(as.double(df_bj$Games_Won), as.double(pred_bj))
