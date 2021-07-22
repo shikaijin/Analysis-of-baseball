@@ -70,36 +70,26 @@ tibble('variables' = test[,1], 'p_value' = test[,2])
 # Correlation analysis for the following pairs of fields for the complete data 
 # spanning 1960 to 2010
 
-# Games Won vs Runs Scored
-cor(df_1960_2010$Games_Won, df_1960_2010$Runs_Scored)
-ggplot(df_1960_2010, aes(x = Runs_Scored, y = Games_Won)) + 
-  geom_point()
+# Games Won vs Runs Scored, Games Lost vs Runs Scored
+# Games Won vs Runs Against, Games Lost vs Runs Against
+# Games Won vs (Runs Scored minus Runs Against), Games Lost vs (Runs Scored 
+# minus Runs Against)
 
-# Games Won vs Runs Against
-cor(df_1960_2010$Games_Won, df_1960_2010$Runs_Against)
-ggplot(df_1960_2010, aes(x = Runs_Against, y = Games_Won)) + 
-  geom_point()
+df2 <- df_1960_2010 %>% 
+  select(Games_Won, Games_Lost, Runs_Scored, Runs_Against) %>% 
+  mutate('Runs_Scored-Runs_Against' = Runs_Scored - Runs_Against)
 
-# Games Won vs (Runs Scored minus Runs Against)
-cor(df_1960_2010$Games_Won, df_1960_2010$Runs_Scored - df_1960_2010$Runs_Against)
-ggplot(df_1960_2010, aes(x = Runs_Scored - Runs_Against, y = Games_Won)) + 
-  geom_point()
+for (i in 3:ncol(df2)){
+  for (j in 1:2) {
+    print(ggplot(mapping = aes(x = unlist(df2[i]), y = unlist(df2[j]))) + 
+            geom_point() +
+            xlab(names(df2)[i]) +
+            ylab(names(df2)[j]))
+  }
+}
 
 
-# Games Lost vs Runs Scored
-cor(df_1960_2010$Games_Lost, df_1960_2010$Runs_Scored)
-ggplot(df_1960_2010, aes(x = Runs_Scored, y = Games_Lost)) + 
-  geom_point()
 
-# Games Lost vs Runs Against
-cor(df_1960_2010$Games_Lost, df_1960_2010$Runs_Against)
-ggplot(df_1960_2010, aes(x = Runs_Against, y = Games_Lost)) + 
-  geom_point()
-
-# Games Lost vs (Runs Scored minus Runs Against)
-cor(df_1960_2010$Games_Lost, df_1960_2010$Runs_Scored - df_1960_2010$Runs_Against)
-ggplot(df_1960_2010, aes(x = Runs_Scored - Runs_Against, y = Games_Lost)) + 
-  geom_point()
       
    
       
