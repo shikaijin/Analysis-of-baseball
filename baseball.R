@@ -85,11 +85,9 @@ for (i in 3:ncol(df2)){
             geom_point() +
             xlab(names(df2)[i]) +
             ylab(names(df2)[j]))
+    print(cor(df2[i], df2[j]))
   }
 }
-
-
-
       
    
       
