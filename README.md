@@ -13,6 +13,7 @@ Approach
 2.	Do a correlation analysis for the following pairs of fields for the complete data spanning 1960 to 2010. 
 
   e.g. Dynamic graph of correlation for Games Won vs (Runs Scored minus Runs Against) from 1960 to 2010 according to different teams
+  
   ![file614c5dfc63b5](https://user-images.githubusercontent.com/79543449/127609664-e129d2f4-1ba9-45c3-86a0-99911a0088c9.gif)
   
 3.	Create a multiple linear regression model for each of the 4 time periods noted above and select the independent variables that are good predictors of games won. 
