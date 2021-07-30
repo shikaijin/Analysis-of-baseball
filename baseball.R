@@ -88,7 +88,15 @@ for (i in 3:ncol(df2)){
     print(cor(df2[i], df2[j]))
   }
 }
-      
+
+# Dynamic graph of correlation for Games Won vs (Runs Scored minus Runs Against) from 1960 to 2010 according to different teams
+p <- ggplot(df_1960_2010, aes(x = Runs_Scored-Runs_Against, y = Games_Won, color = Team)) +
+  geom_point(alpha = 0.7, show.legend = FALSE) +
+  labs(title = 'Year: {frame_time}', x = 'Runs_Scored-Runs_Against', y = 'Games_Won') +
+  transition_time(Year) +
+  ease_aes('linear')
+
+animate(p, renderer = gifski_renderer())    
    
       
 # Create a multiple linear regression model for each of the 4 time periods noted 
