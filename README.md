@@ -1,4 +1,5 @@
-#  Analysis of Baseball  <img src = https://turfnsport.com/wp-content/uploads/2019/09/mlblogo1.jpg, width = 50>
+#  Analysis of Baseball  <img src = https://turfnsport.com/wp-content/uploads/2019/09/mlblogo1.jpg, width = 50> ![visitor badge](https://visitor-badge.glitch.me/badge?page_id=shikaijin/Analysis-of-baseball.visitor-badge)
+
 
 This project aims to determine factors associated with game performance and in particular whether tight defense is associated with increased game won, and whether the conclusion that tight defenses increase game won is valid across multiple time periods.
 
