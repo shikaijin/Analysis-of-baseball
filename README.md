@@ -16,10 +16,6 @@ d.	Period 4 – 1990 to 2010
 1.	Perform an exploratory data analysis to understand the statistical properties and distribution shapes of 8 key variables of choice. Perform this analysis for a single dataset that spans 1960 to 2010. 
 
 2.	Do a correlation analysis for the following pairs of fields for the complete data spanning 1960 to 2010. 
-
-  e.g. Dynamic graph of correlation for Games Won vs (Runs Scored minus Runs Against) from 1960 to 2010 according to different teams
-  
-   ![file614c6d092bce](https://user-images.githubusercontent.com/79543449/127610839-0fbcc430-a36c-404e-9df5-650a319fc7ad.gif)
   
 3.	Create a multiple linear regression model for each of the 4 time periods noted above and select the independent variables that are good predictors of games won. 
 	
@@ -27,5 +23,9 @@ d.	Period 4 – 1990 to 2010
 
 5.	Use the 4th regression model from 1990 to 2010 and forecast the number of games won for the New York Yankees and the Toronto Blue Jays using values for the independent variables for 2012 and 2015.
 
+
+* Data: [View here](https://github.com/shikaijin/Analysis-of-baseball/blob/46c0772c2b4beab25500152928b3db7c63d1c16c/baseball_teams.csv)
+* R Code: [View here](https://github.com/shikaijin/Analysis-of-baseball/blob/46c0772c2b4beab25500152928b3db7c63d1c16c/baseball.R)
+* Output: [View here](https://github.com/shikaijin/Analysis-of-baseball/blob/46c0772c2b4beab25500152928b3db7c63d1c16c/doc/baseball.pdf)
 
 
